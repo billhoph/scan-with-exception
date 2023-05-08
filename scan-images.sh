@@ -17,7 +17,7 @@ EOF
 result_url=$(./twistcli images scan --address $cwp_url --user $user --password $password $image | tail -1 | cut -c 33-)
 image_id=${result_url: -73}
 
-login=$(curl \
+login=$(curl --silent \
   -H "Content-Type: application/json" \
   -X POST \
   -d "$(generate_post_data)" \
@@ -28,5 +28,9 @@ token=${token:1:-1}
 
 pcs_url="https://asia-northeast1.cloud.twistlock.com/japan-1167259786/api/v1/scans?limit=17&offset=0&project=Central+Console&reverse=true&search=$image_id&sort=entityInfo.vulnerabilityRiskScore&type=ciImage,ciTas"
 
-scan_result=$(curl -o response.json -H "Authorization: Bearer $token" -X GET $pcs_url)
+scan_result=$(curl --silent -o response.json -H "Authorization: Bearer $token" -X GET $pcs_url)
 python3 scan-result.py
+
+echo 
+echo "-----Please refer to the following links for more detail information-----"
+echo $result_url
