@@ -1,8 +1,12 @@
 #image='harbor.alson.space/demo/sample-app:v1.3'
-image=$1
-user='1761693e-e8a7-48b2-953f-a68dc442c9f1'
-password='BJP5MWXm+aAe/WOaoyrVAiBAGiM='
-cwp_url='https://asia-northeast1.cloud.twistlock.com/japan-1167259786'
+#user='xxxxxxxxxx-xxxxxx-xxxxxxx'
+#password='xxxxxxxxxxxxxxxx'
+#cwp_url='https://asia-northeast1.cloud.twistlock.com/japan-1167259786'
+
+cwp_url=$1
+user=$2
+password=$3
+image=$4
 
 generate_post_data()
 {
